@@ -12,7 +12,7 @@ class ServiceRepository: ApiRequest() {
         ServiceBuilder.buildService(ServiceAPI::class.java)
 
 
-    suspend fun registerUser(service: ServiceEntity): ServiceResponse {
+    suspend fun registerService(service: ServiceEntity): ServiceResponse {
         return apiRequest {
             serviceAPI.registerService(service)
         }

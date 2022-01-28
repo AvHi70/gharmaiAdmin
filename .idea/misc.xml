@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable-v24/custom_input.xml" value="0.131" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable/ic_camera.xml" value="0.145" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable/ic_gallery.xml" value="0.145" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable/ic_user.xml" value="0.131" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable/ic_worker.xml" value="0.131" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_add_service.xml" value="0.2" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_admin_splashscreen.xml" value="0.19692307692307692" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/menu/admin_menu.xml" value="0.2" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/menu/camerapopup.xml" value="0.2" />
       </map>
     </option>
   </component>
