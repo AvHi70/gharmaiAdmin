@@ -24,9 +24,9 @@ class WorkerRepository : ApiRequest(){
             workerApi.loginWorker(email, password)
         }
     }
-    suspend fun getCurrentWorker(id: String): WorkerResponse {
+    suspend fun getAllWorker(): WorkerResponse {
         return apiRequest {
-            workerApi.getWorkerProfile(ServiceBuilder.token!!, id)
+            workerApi.getWorkerProfile()
         }
     }
 //    suspend fun editUser(id: String,username: String, email: String,address: String,phone:String): UserResponse {

@@ -12,7 +12,7 @@ class adminSplash : AppCompatActivity() {
         setContentView(R.layout.activity_admin_splashscreen)
 
         Handler().postDelayed({
-            startActivity(Intent(this@adminSplash, adminDashboard::class.java))
+            startActivity(Intent(this@adminSplash, admin_login::class.java))
         },4000)
     }
 }

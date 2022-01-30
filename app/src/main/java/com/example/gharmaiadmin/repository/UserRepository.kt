@@ -13,20 +13,21 @@ class UserRepository : ApiRequest(){
         ServiceBuilder.buildService(UserAPI::class.java)
 
     //Register user
-    suspend fun registerUser(user: UserEntity): UserResponse {
+//    suspend fun registerUser(user: UserEntity): UserResponse {
+//        return apiRequest {
+//            userApi.registerUser(user)
+//        }
+//    }
+//    // Login user
+//    suspend fun login(email: String, password: String): UserResponse {
+//        return apiRequest {
+//            userApi.loginUser(email, password)
+//        }
+//    }
+    suspend fun getAllUsers(): UserResponse {
         return apiRequest {
-            userApi.registerUser(user)
-        }
-    }
-    // Login user
-    suspend fun login(email: String, password: String): UserResponse {
-        return apiRequest {
-            userApi.loginUser(email, password)
-        }
-    }
-    suspend fun getCurrentUserAPI(id: String): UserResponse {
-        return apiRequest {
-            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
+//            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
+            userApi.getAllUserAPI()
         }
     }
     suspend fun editUser(id: String,username: String, email: String,address: String,phone:String): UserResponse {
@@ -48,9 +49,10 @@ class UserRepository : ApiRequest(){
         return apiRequest {
             userApi.deleteuser(ServiceBuilder.token!!, id)
         }
-    }suspend fun getUserDetails(id:String): UserResponse {
-        return apiRequest {
-            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
-        }
     }
+//    suspend fun getUserDetails(id:String): UserResponse {
+//        return apiRequest {
+//            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
+//        }
+//    }
 }

@@ -10,8 +10,12 @@
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/drawable/ic_worker.xml" value="0.131" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_add_service.xml" value="0.2" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.2" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_admin_login.xml" value="0.25" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_admin_register.xml" value="0.25" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_admin_splashscreen.xml" value="0.19692307692307692" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/fragment_user_section.xml" value="0.1796875" />
+        <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/layout/fragment_worker_section.xml" value="0.1796875" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/menu/admin_menu.xml" value="0.2" />
         <entry key="..\:/Gharmai-Frontend-master/GharmaiAdmin/app/src/main/res/menu/camerapopup.xml" value="0.2" />
       </map>

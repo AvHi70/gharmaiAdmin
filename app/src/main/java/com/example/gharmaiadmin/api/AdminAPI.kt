@@ -1,35 +1,36 @@
 package com.example.gharmaiadmin.api
 
+import com.example.gharmaiadmin.entity.AdminEntity
 import com.example.gharmaiadmin.entity.UserEntity
-import com.example.gharmaiadmin.response.UserResponse
+import com.example.gharmaiadmin.response.AdminResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
-interface UserAPI {
+interface AdminAPI {
 
     //user API
     //routes
-    @POST("user/register")
-    suspend fun registerUser(
-        @Body user: UserEntity
-    ): Response<UserResponse>
+    @POST("admin/register")
+    suspend fun registerAdmin(
+        @Body user: AdminEntity
+    ): Response<AdminResponse>
 
 
     @FormUrlEncoded
-    @POST("user/login")
-    suspend fun loginUser(
+    @POST("admin/login")
+    suspend fun loginAdmin(
         //send parameters
 //        @Body user: UserEntity
-        @Field("emailUser") email: String,
-        @Field("passwordUser") password: String
-    ): Response<UserResponse>
+        @Field("adminEmail") email: String,
+        @Field("adminPassword") password: String
+    ): Response<AdminResponse>
 
     @GET("profile/single")
     suspend fun getAllUserAPI(
 //        @Header("Authorization")token: String,
 //        @Path("id")  id: String
-    ): Response<UserResponse>
+    ): Response<AdminResponse>
 
     @FormUrlEncoded
     @PUT("user/update/{id}")
@@ -40,13 +41,13 @@ interface UserAPI {
         @Field("email") email:String,
         @Field("address") address:String,
         @Field("phone") phone:String,
-    ): Response<UserResponse>
+    ): Response<AdminResponse>
     @PUT("profile/update/{id}")
     suspend fun updateuser(
         @Header("Authorization") token: String,
         @Path("id") id: String,
         @Body data : UserEntity
-    ): Response<UserResponse>
+    ): Response<AdminResponse>
 
 
 //    @Multipart
@@ -63,12 +64,12 @@ interface UserAPI {
         @Header("Authorization") token: String,
         @Path("id") id: String,
         @Part file: MultipartBody.Part
-    ): Response<UserResponse>
+    ): Response<AdminResponse>
 
     @DELETE("profile/delete/{id}")
     suspend fun deleteuser(
         @Header("Authorization") token: String,
         @Path("id") id: String,
 
-        ):Response<UserResponse>
+        ):Response<AdminResponse>
 }
