@@ -12,9 +12,8 @@
         android:title="Worker" />
 
     <item
-        android:id="@+id/logout_admin"
+        android:id="@+id/service"
         android:icon="@drawable/logout"
         android:title="Log Out" />
-
 
 </menu>
