@@ -3,7 +3,7 @@ package com.example.gharmaiadmin.UI
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.gharmaiadmin.Admin_Fragment.sevices_adding
+import com.example.gharmaiadmin.Fragments.sevices_adding
 import com.example.gharmaiadmin.Admin_Fragment.user_section
 import com.example.gharmaiadmin.Admin_Fragment.worker_section
 import com.example.gharmaiadmin.R

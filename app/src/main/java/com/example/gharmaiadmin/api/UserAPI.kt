@@ -25,7 +25,7 @@ interface UserAPI {
         @Field("passwordUser") password: String
     ): Response<UserResponse>
 
-    @GET("profile/single")
+    @GET("profile/showall")
     suspend fun getAllUserAPI(
 //        @Header("Authorization")token: String,
 //        @Path("id")  id: String

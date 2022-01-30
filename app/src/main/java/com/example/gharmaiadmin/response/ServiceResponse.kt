@@ -5,7 +5,7 @@ import com.example.gharmaiadmin.entity.ServiceEntity
 data class ServiceResponse(
     val success:Boolean? = null,
     val token: String? =null,
-    val data: ServiceEntity? = null,
+    val data: MutableList<ServiceEntity>? = null,
     val userId: String? = null,
 ) {
 }

@@ -8,7 +8,6 @@ import com.example.gharmaiadmin.entity.UserEntity
 data class UserResponse(
     val success:Boolean? = null,
     val token: String? =null,
-//    val data: UserEntity? = null,
     val data: MutableList<UserEntity>? = null,
     val userId: String? = null,
 ) {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin_Fragment.sevices_adding">
+    android:id="@+id/serviceSection"
+    tools:context=".Fragments.sevices_adding">
 
 
 <!--    <LinearLayout-->
@@ -40,10 +41,11 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/service_recyclerView"
+        android:id="@+id/serviceRecyclerView"
         android:layout_width="412dp"
         android:layout_height="683dp"
         android:layout_marginTop="2dp"
+        tools:listitem="@layout/service_recycle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

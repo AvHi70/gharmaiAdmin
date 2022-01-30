@@ -21,6 +21,6 @@ interface ServiceAPI {
 
     @GET("service/showall")
     suspend fun getAllServiceAPI(
-        @Header("Authorization")token: String
+//        @Header("Authorization")token: String
     ): Response<ServiceResponse>
 }

@@ -8,8 +8,7 @@ import com.example.gharmaiadmin.entity.WorkerEntity
 data class WorkerResponse(
     val success:Boolean? = null,
     val token: String? =null,
-    val data: WorkerEntity? = null,
-//    val data: MutableList<UserEntity>? = null,
+    val data: MutableList<WorkerEntity>? = null,
     val userId: String? = null,
 ) {
 }

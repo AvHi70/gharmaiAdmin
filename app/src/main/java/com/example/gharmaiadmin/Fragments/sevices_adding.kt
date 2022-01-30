@@ -1,4 +1,4 @@
-package com.example.gharmaiadmin.Admin_Fragment
+package com.example.gharmaiadmin.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,18 +7,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gharmaiadmin.R
 import com.example.gharmaiadmin.UI.addService
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.gharmaiadmin.adapter.ServiceAdapter
+import com.example.gharmaiadmin.adapter.UserAdapter
+import com.example.gharmaiadmin.entity.ServiceEntity
+import com.example.gharmaiadmin.entity.UserEntity
+import com.example.gharmaiadmin.repository.ServiceRepository
+import com.example.gharmaiadmin.repository.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class sevices_adding : Fragment() {
 
 
-    private lateinit var AddService: Button
+    private lateinit var addService: Button
+    private lateinit var recyclerView: RecyclerView
 
-
-
+    companion object{
+        private var serviceList: MutableList<ServiceEntity>? = ArrayList()
+    }
 
 
     override fun onCreateView(
@@ -28,15 +42,49 @@ class sevices_adding : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_sevices_adding, container, false)
 
-        AddService = view.findViewById(R.id.btnaddService)
+        addService = view.findViewById(R.id.btnaddService)
+        recyclerView = view.findViewById(R.id.serviceRecyclerView)
 
-        AddService.setOnClickListener {
-            startActivity(Intent(activity,addService::class.java))
+        addService.setOnClickListener {
+            startActivity(Intent(activity, addService::class.java))
         }
 
+        serviceView()
         return view
     }
 
+    private fun serviceView() {
+        Toast.makeText(context, "service working", Toast.LENGTH_SHORT).show()
+        serviceList = ArrayList()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+
+                val serviceRepository = ServiceRepository()
+                val serviceResponse = serviceRepository.getAllServiceAPI()
+
+                if(serviceResponse.success== true){
+                    val serviceLists = serviceResponse.data
+                    println(serviceLists)
+                    if (serviceLists != null) {
+                        serviceLists.forEach { item ->
+                            serviceLists.add(item)
+                        }
+                        withContext(Dispatchers.Main){
+                            val serviceAdapter = context?.let { ServiceAdapter(it, serviceLists) }
+                            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            recyclerView.adapter = serviceAdapter
+                        }
+                    }
+                }
+
+            }catch (ex: Exception){
+                withContext(Dispatchers.Main){
+                    Toast.makeText(context, ex.toString(), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 
 }

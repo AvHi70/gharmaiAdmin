@@ -9,22 +9,22 @@ interface WorkerAPI {
 
     //user API
     //routes
-    @POST("worker/register")
-    suspend fun registerUser(
-        @Body worker: WorkerEntity
-    ): Response<WorkerResponse>
+//    @POST("worker/register")
+//    suspend fun registerUser(
+//        @Body worker: WorkerEntity
+//    ): Response<WorkerResponse>
+//
+//
+//    @FormUrlEncoded
+//    @POST("worker/login")
+//    suspend fun loginWorker(
+//        //send parameters
+////        @Body user: UserEntity
+//        @Field("workerEmail") email: String,
+//        @Field("workerPassword") password: String
+//    ): Response<WorkerResponse>
 
-
-    @FormUrlEncoded
-    @POST("worker/login")
-    suspend fun loginWorker(
-        //send parameters
-//        @Body user: UserEntity
-        @Field("workerEmail") email: String,
-        @Field("workerPassword") password: String
-    ): Response<WorkerResponse>
-
-    @GET("worker/profile/show/{id}")
+    @GET("worker/showAll")
     suspend fun getWorkerProfile(
 //        @Header("Authorization")token: String,
 //        @Path("id")  id: String

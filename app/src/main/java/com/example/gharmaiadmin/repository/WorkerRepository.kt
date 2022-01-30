@@ -12,18 +12,18 @@ class WorkerRepository : ApiRequest(){
     private val workerApi =
         ServiceBuilder.buildService(WorkerAPI::class.java)
 
-    //Register worker
-    suspend fun registerWorker(worker: WorkerEntity): WorkerResponse {
-        return apiRequest {
-            workerApi.registerUser(worker)
-        }
-    }
-    // Login worker
-    suspend fun loginWorker(email: String, password: String): WorkerResponse {
-        return apiRequest {
-            workerApi.loginWorker(email, password)
-        }
-    }
+//    //Register worker
+//    suspend fun registerWorker(worker: WorkerEntity): WorkerResponse {
+//        return apiRequest {
+//            workerApi.registerUser(worker)
+//        }
+//    }
+//    // Login worker
+//    suspend fun loginWorker(email: String, password: String): WorkerResponse {
+//        return apiRequest {
+//            workerApi.loginWorker(email, password)
+//        }
+//    }
     suspend fun getAllWorker(): WorkerResponse {
         return apiRequest {
             workerApi.getWorkerProfile()
@@ -34,11 +34,11 @@ class WorkerRepository : ApiRequest(){
 //            userApi.editUser(ServiceBuilder.token!!,id, username,  email,address,phone,)
 //        }
 //    }
-    suspend fun updateWorker(id:String, data: WorkerEntity): WorkerResponse {
-        return apiRequest {
-            workerApi.updateWorker(ServiceBuilder.token!!, id, data)
-        }
-    }
+//    suspend fun updateWorker(id:String, data: WorkerEntity): WorkerResponse {
+//        return apiRequest {
+//            workerApi.updateWorker(ServiceBuilder.token!!, id, data)
+//        }
+//    }
 //    suspend fun updateimage(id:String,body: MultipartBody.Part): UserResponse {
 //        return apiRequest {
 //            userApi.updateimage(ServiceBuilder.token!!, id, body)
