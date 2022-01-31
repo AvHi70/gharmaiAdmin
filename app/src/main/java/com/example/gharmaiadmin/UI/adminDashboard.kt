@@ -28,7 +28,6 @@ class adminDashboard : AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun replacefragment(fragment: Fragment) {

@@ -34,15 +34,12 @@ class user_section : Fragment() {
         val view = inflater.inflate(R.layout.fragment_user_section, container, false)
 
         recyclerView = view.findViewById(R.id.userSection)
-
-
         userView()
         return view
     }
 
     private fun userView() {
 
-        Toast.makeText(context, "user working ", Toast.LENGTH_SHORT).show()
         userList = ArrayList()
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -54,16 +51,17 @@ class user_section : Fragment() {
                     val userLists = userResponse.data
 
                     if (userLists != null) {
-                        userLists.forEach { item ->
-                            userLists.add(item)
+                        userLists.forEach { item -> userLists.add(item)
                         }
                         withContext(Dispatchers.Main){
+                            Toast.makeText(context, "hello users", Toast.LENGTH_SHORT).show()
                             val userAdapter = context?.let { UserAdapter(it, userLists) }
                             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             recyclerView.adapter = userAdapter
                         }
+                    }else{
+                        Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                     }
-
                 }
 
             }catch (ex: Exception){

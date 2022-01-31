@@ -29,8 +29,6 @@
             android:name=".UI.addService"
             android:exported="true">
 
-
-
         </activity>
         <activity
             android:name=".UI.admin_login"

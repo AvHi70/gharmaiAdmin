@@ -31,7 +31,8 @@ class sevices_adding : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     companion object{
-        private var serviceList: MutableList<ServiceEntity>? = ArrayList()
+        private var serviceList: ArrayList<ServiceEntity> = ArrayList<ServiceEntity>()
+//        private var serviceList: MutableList<ServiceEntity>? = ArrayList()
     }
 
 
@@ -46,15 +47,19 @@ class sevices_adding : Fragment() {
         recyclerView = view.findViewById(R.id.serviceRecyclerView)
 
         addService.setOnClickListener {
-            startActivity(Intent(activity, addService::class.java))
+            startActivity(Intent(this@sevices_adding.context, addService::class.java))
+
         }
+
+//        val serviceAdapter = context?.let { ServiceAdapter(it, serviceList) }
+//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+//        recyclerView.adapter = serviceAdapter
 
         serviceView()
         return view
     }
 
     private fun serviceView() {
-        Toast.makeText(context, "service working", Toast.LENGTH_SHORT).show()
         serviceList = ArrayList()
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -68,7 +73,7 @@ class sevices_adding : Fragment() {
                     println(serviceLists)
                     if (serviceLists != null) {
                         serviceLists.forEach { item ->
-                            serviceLists.add(item)
+                            serviceList.add(item)
                         }
                         withContext(Dispatchers.Main){
                             val serviceAdapter = context?.let { ServiceAdapter(it, serviceLists) }
@@ -85,8 +90,6 @@ class sevices_adding : Fragment() {
             }
         }
     }
-
-
 }
 
 

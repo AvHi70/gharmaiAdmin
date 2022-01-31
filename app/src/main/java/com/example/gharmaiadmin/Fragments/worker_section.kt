@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.adapter.UserAdapter
 import com.example.gharmaiadmin.adapter.WorkerAdapter
 import com.example.gharmaiadmin.entity.WorkerEntity
+import com.example.gharmaiadmin.repository.UserRepository
 import com.example.gharmaiadmin.repository.WorkerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +24,9 @@ class worker_section : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    companion object{
-        private var workerList: MutableList<WorkerEntity>? = ArrayList()
+    companion object {
+        private var workerList: ArrayList<WorkerEntity>? = ArrayList<WorkerEntity>()
+//        private var workerList: MutableList<WorkerEntity>? = ArrayList()
     }
 
     override fun onCreateView(
@@ -51,22 +54,20 @@ class worker_section : Fragment() {
 
                 if(workerResponse.success== true){
                     val workerLists = workerResponse.data
+
                     if (workerLists != null) {
                         workerLists.forEach { item ->
-                            workerLists.add(item)
-
+                            workerList!!.add(item)
                         }
                         withContext(Dispatchers.Main){
+                            Toast.makeText(context, "Hello Worker", Toast.LENGTH_SHORT).show()
                             val workerAdapter = context?.let { WorkerAdapter(it, workerLists) }
-                            Toast.makeText(context, "$workerLists", Toast.LENGTH_SHORT).show()
-
                             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             recyclerView.adapter = workerAdapter
                         }
                     }else{
                         Toast.makeText(context, "No data found", Toast.LENGTH_SHORT).show()
                     }
-
                 }
 
             }catch (ex: Exception){
@@ -76,6 +77,4 @@ class worker_section : Fragment() {
             }
         }
     }
-
-
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +23,7 @@ class ServiceAdapter(
     val serviceDetail: TextView = view.findViewById(R.id.tvServiceDetail)
     val servicePrice: TextView = view.findViewById(R.id.tvServicePrice)
     val btnServiceDelete: Button = view.findViewById(R.id.btnDeleteService)
-    val serviceImage: TextView = view.findViewById(R.id.serviceImage)
+    val serviceImage: ImageView = view.findViewById(R.id.serviceImage)
 
     }
 
