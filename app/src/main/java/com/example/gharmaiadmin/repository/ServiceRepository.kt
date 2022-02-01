@@ -4,6 +4,7 @@ import com.example.gharmaiadmin.api.ApiRequest
 import com.example.gharmaiadmin.api.ServiceAPI
 import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.ServiceEntity
+import com.example.gharmaiadmin.response.DeleteResponse
 import com.example.gharmaiadmin.response.ServiceResponse
 
 class ServiceRepository: ApiRequest() {
@@ -22,6 +23,11 @@ class ServiceRepository: ApiRequest() {
         return apiRequest {
 //            serviceAPI.getAllServiceAPI()
             serviceAPI.getAllServiceAPI(ServiceBuilder.token!!)
+        }
+    }
+    suspend fun deleteService(id: String): DeleteResponse {
+        return apiRequest {
+            serviceAPI.deleteService(ServiceBuilder.token!!,id)
         }
     }
 }

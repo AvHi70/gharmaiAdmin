@@ -1,6 +1,7 @@
 package com.example.gharmaiadmin.api
 
 import com.example.gharmaiadmin.entity.WorkerEntity
+import com.example.gharmaiadmin.response.UserResponse
 import com.example.gharmaiadmin.response.WorkerResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -65,10 +66,9 @@ interface WorkerAPI {
 //        @Part file: MultipartBody.Part
 //    ): Response<UserResponse>
 //
-//    @DELETE("profile/delete/{id}")
-//    suspend fun deleteuser(
-//        @Header("Authorization") token: String,
-//        @Path("id") id: String,
-//
-//        ):Response<UserResponse>
+    @DELETE("admin/worker/profile/delete/{id}")
+    suspend fun deleteWorker(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+        ):Response<WorkerResponse>
 }

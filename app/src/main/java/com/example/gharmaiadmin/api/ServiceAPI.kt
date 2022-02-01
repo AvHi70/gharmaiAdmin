@@ -1,6 +1,7 @@
 package com.example.gharmaiadmin.api
 
 import com.example.gharmaiadmin.entity.ServiceEntity
+import com.example.gharmaiadmin.response.DeleteResponse
 import com.example.gharmaiadmin.response.ServiceResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -21,4 +22,10 @@ interface ServiceAPI {
         @Header("Authorization")token: String,
 //        @Path("id") id: String,
     ): Response<ServiceResponse>
+
+    @DELETE("admin/service/delete/{id}")
+    suspend fun deleteService(
+        @Header("Authorization") token: String,
+        @Path("id") id: String
+    ): Response<DeleteResponse>
 }

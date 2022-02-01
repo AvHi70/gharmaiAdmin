@@ -23,7 +23,8 @@ class user_section : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     companion object{
-        private var userList: MutableList<UserEntity>? = ArrayList()
+        var userList: ArrayList<UserEntity>? = ArrayList()
+//        private var userList: MutableList<UserEntity>? = ArrayList()
     }
 
     override fun onCreateView(

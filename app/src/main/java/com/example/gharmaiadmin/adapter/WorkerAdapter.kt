@@ -12,6 +12,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gharmaiadmin.R
 import com.example.gharmaiadmin.entity.WorkerEntity
+import com.example.gharmaiadmin.repository.UserRepository
+import com.example.gharmaiadmin.repository.WorkerRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class WorkerAdapter(
     private val context: Context,
@@ -38,6 +44,7 @@ class WorkerAdapter(
 
         val worker = workerList[position]
         println(worker)
+        var workerID = worker._id
         holder.workerName.text = worker.workerName
         holder.workerEmail.text = worker.workerEmail
         holder.workerAddress.text = worker.workerAddress
@@ -45,7 +52,54 @@ class WorkerAdapter(
         holder.workerGender.text = worker.workerGender
 
         holder.deleteButton.setOnClickListener {
-            Toast.makeText(context, "Data deleted", Toast.LENGTH_SHORT).show()
+            val builder = android.app.AlertDialog.Builder(context)
+            builder.setTitle("Are You Sure want to Delete?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            builder.setPositiveButton("Yes"){_,_->
+                if (workerID != null){
+                    workerDelete(workerID)
+                    workerList.remove(worker)
+                    notifyDataSetChanged()
+                }
+//                    Toast.makeText(context, "Music Successfully Deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No"){_,_->
+                Toast.makeText(context, "Action Cancelled", Toast.LENGTH_SHORT).show()
+            }
+            val alertDialog: android.app.AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+        }
+    }
+    fun workerDelete(serviceID: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val repository = WorkerRepository()
+                val response = repository.deleteWorker(serviceID)
+                if (response.success==true) {
+//                    sevices_adding.serviceList?.remove(ServiceEntity())
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "Worker deleted", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "Delete failed", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        "Error", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 

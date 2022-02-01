@@ -31,8 +31,8 @@ class sevices_adding : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     companion object{
-        private var serviceList: ArrayList<ServiceEntity> = ArrayList<ServiceEntity>()
-//        private var serviceList: MutableList<ServiceEntity>? = ArrayList()
+        var serviceList: ArrayList<ServiceEntity> = ArrayList<ServiceEntity>()
+//        var serviceList: MutableList<ServiceEntity>? = ArrayList()
     }
 
 

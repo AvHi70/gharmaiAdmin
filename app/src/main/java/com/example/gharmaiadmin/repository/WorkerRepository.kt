@@ -4,6 +4,7 @@ import com.example.gharmaiadmin.api.ApiRequest
 import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.api.WorkerAPI
 import com.example.gharmaiadmin.entity.WorkerEntity
+import com.example.gharmaiadmin.response.UserResponse
 import com.example.gharmaiadmin.response.WorkerResponse
 import okhttp3.MultipartBody
 
@@ -44,13 +45,13 @@ class WorkerRepository : ApiRequest(){
 //            userApi.updateimage(ServiceBuilder.token!!, id, body)
 //        }
 //    }
-//    suspend fun deleteuser(id:String): UserResponse {
-//        return apiRequest {
-//            userApi.deleteuser(ServiceBuilder.token!!, id)
-//        }
+    suspend fun deleteWorker(id:String): WorkerResponse {
+        return apiRequest {
+            workerApi.deleteWorker(ServiceBuilder.token!!, id)
+        }
 //    }suspend fun getUserDetails(id:String): UserResponse {
 //        return apiRequest {
 //            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
 //        }
-//    }
+    }
 }

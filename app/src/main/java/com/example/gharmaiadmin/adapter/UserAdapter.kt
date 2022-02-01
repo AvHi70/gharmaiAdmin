@@ -12,6 +12,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gharmaiadmin.R
 import com.example.gharmaiadmin.entity.UserEntity
+import com.example.gharmaiadmin.repository.ServiceRepository
+import com.example.gharmaiadmin.repository.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserAdapter(
     private val context: Context,
@@ -38,6 +44,7 @@ class UserAdapter(
 
         val users = userList[position]
         println(users)
+        var userID = users._id
         holder.username.text = users.username
         holder.userEmail.text = users.emailUser
         holder.userAddress.text = users.addressUser
@@ -45,10 +52,56 @@ class UserAdapter(
         holder.userGender.text = users.genderUser
 
         holder.deleteButton.setOnClickListener {
-            Toast.makeText(context, "Data deleted", Toast.LENGTH_SHORT).show()
+            val builder = android.app.AlertDialog.Builder(context)
+            builder.setTitle("Are You Sure want to Delete?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            builder.setPositiveButton("Yes"){_,_->
+                if (userID != null){
+                    userDelete(userID)
+                    userList.remove(users)
+                    notifyDataSetChanged()
+                }
+//                    Toast.makeText(context, "Music Successfully Deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No"){_,_->
+                Toast.makeText(context, "Action Cancelled", Toast.LENGTH_SHORT).show()
+            }
+            val alertDialog: android.app.AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
     }
-
+    fun userDelete(serviceID: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val repository = UserRepository()
+                val response = repository.deleteUser(serviceID)
+                if (response.success==true) {
+//                    sevices_adding.serviceList?.remove(ServiceEntity())
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "User deleted", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "Delete failed", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        "Error", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
     override fun getItemCount(): Int {
         return userList.size
     }

@@ -9,8 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gharmaiadmin.Fragments.sevices_adding
 import com.example.gharmaiadmin.R
 import com.example.gharmaiadmin.entity.ServiceEntity
+import com.example.gharmaiadmin.repository.ServiceRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ServiceAdapter(
     private val context: Context,
@@ -37,17 +43,67 @@ class ServiceAdapter(
 
 
         val services = serviceList[position]
+        var serviceID = services._id
         println(services)
         holder.serviceName.text = services.serviceName
         holder.serviceDetail.text = services.serviceDetails
         holder.servicePrice.text = services.servicePrice
 
         holder.btnServiceDelete.setOnClickListener {
-            Toast.makeText(context, "Data deleted", Toast.LENGTH_SHORT).show()
+            val builder = android.app.AlertDialog.Builder(context)
+            builder.setTitle("Are You Sure want to Delete?")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            builder.setPositiveButton("Yes"){_,_->
+                if (serviceID != null){
+                    serviceDelete(serviceID)
+                    serviceList.remove(services)
+                    notifyDataSetChanged()
+                }
+//                    Toast.makeText(context, "Music Successfully Deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No"){_,_->
+                Toast.makeText(context, "Action Cancelled", Toast.LENGTH_SHORT).show()
+            }
+            val alertDialog: android.app.AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
     }
 
+    fun serviceDelete(serviceID: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val repository = ServiceRepository()
+                val response = repository.deleteService(serviceID)
+                if (response.success==true) {
+//                    sevices_adding.serviceList?.remove(ServiceEntity())
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "Service deleted", Toast.LENGTH_SHORT
+                        ).show()
 
+                    }
+
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            "Delete failed", Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        "Error", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+    }
 
     override fun getItemCount(): Int {
         return serviceList.size

@@ -45,9 +45,9 @@ class UserRepository : ApiRequest(){
             userApi.updateimage(ServiceBuilder.token!!, id, body)
         }
     }
-    suspend fun deleteuser(id:String): UserResponse {
+    suspend fun deleteUser(id:String): UserResponse {
         return apiRequest {
-            userApi.deleteuser(ServiceBuilder.token!!, id)
+            userApi.deleteUser(ServiceBuilder.token!!, id)
         }
     }
 //    suspend fun getUserDetails(id:String): UserResponse {

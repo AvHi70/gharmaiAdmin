@@ -34,7 +34,7 @@ class addService : AppCompatActivity() {
     private lateinit var serviceSpinner: Spinner
     private lateinit var serviceImage: ImageView
 
-    val serviceType = arrayOf("Salon for Women","Salon fro Men","Plumber","Electrician","Cleaning and Disinfection","Carpenter","Men Therapy","Women Therapy")
+    val serviceType = arrayOf("Salon for Women","Salon for Men","Plumber","Electrician","Cleaning and Disinfection","Carpenter","Men Therapy","Women Therapy")
     var service : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {

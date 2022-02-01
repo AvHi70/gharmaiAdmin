@@ -25,7 +25,7 @@ class worker_section : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     companion object {
-        private var workerList: ArrayList<WorkerEntity>? = ArrayList<WorkerEntity>()
+        var workerList: ArrayList<WorkerEntity>? = ArrayList<WorkerEntity>()
 //        private var workerList: MutableList<WorkerEntity>? = ArrayList()
     }
 
