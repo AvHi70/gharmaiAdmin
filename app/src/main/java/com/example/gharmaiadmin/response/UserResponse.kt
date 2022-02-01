@@ -10,5 +10,6 @@ data class UserResponse(
     val token: String? =null,
     val data: MutableList<UserEntity>? = null,
     val userId: String? = null,
+    val id: String? = null,
 ) {
 }

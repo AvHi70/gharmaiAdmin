@@ -26,7 +26,7 @@ interface WorkerAPI {
 
     @GET("worker/showAll")
     suspend fun getWorkerProfile(
-//        @Header("Authorization")token: String,
+        @Header("Authorization")token: String,
 //        @Path("id")  id: String
     ): Response<WorkerResponse>
 //

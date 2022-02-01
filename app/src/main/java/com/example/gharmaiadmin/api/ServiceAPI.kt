@@ -3,10 +3,7 @@ package com.example.gharmaiadmin.api
 import com.example.gharmaiadmin.entity.ServiceEntity
 import com.example.gharmaiadmin.response.ServiceResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ServiceAPI {
 
@@ -21,6 +18,7 @@ interface ServiceAPI {
 
     @GET("service/showall")
     suspend fun getAllServiceAPI(
-//        @Header("Authorization")token: String
+        @Header("Authorization")token: String,
+//        @Path("id") id: String,
     ): Response<ServiceResponse>
 }

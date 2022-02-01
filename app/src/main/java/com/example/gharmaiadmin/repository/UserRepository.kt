@@ -26,8 +26,8 @@ class UserRepository : ApiRequest(){
 //    }
     suspend fun getAllUsers(): UserResponse {
         return apiRequest {
-//            userApi.getAllUserAPI(ServiceBuilder.token!!, id)
-            userApi.getAllUserAPI()
+            userApi.getAllUserAPI(ServiceBuilder.token!!)
+//            userApi.getAllUserAPI()
         }
     }
     suspend fun editUser(id: String,username: String, email: String,address: String,phone:String): UserResponse {

@@ -27,7 +27,7 @@ interface UserAPI {
 
     @GET("profile/showall")
     suspend fun getAllUserAPI(
-//        @Header("Authorization")token: String,
+        @Header("Authorization")token: String,
 //        @Path("id")  id: String
     ): Response<UserResponse>
 

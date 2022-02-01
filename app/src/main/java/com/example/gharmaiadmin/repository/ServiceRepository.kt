@@ -20,7 +20,8 @@ class ServiceRepository: ApiRequest() {
 
     suspend fun getAllServiceAPI(): ServiceResponse {
         return apiRequest {
-            serviceAPI.getAllServiceAPI()
+//            serviceAPI.getAllServiceAPI()
+            serviceAPI.getAllServiceAPI(ServiceBuilder.token!!)
         }
     }
 }
