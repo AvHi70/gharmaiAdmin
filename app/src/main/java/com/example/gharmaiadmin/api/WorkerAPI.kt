@@ -67,7 +67,7 @@ interface WorkerAPI {
 //    ): Response<UserResponse>
 //
     @DELETE("admin/worker/profile/delete/{id}")
-    suspend fun deleteWorker(
+    suspend fun     deleteWorker(
         @Header("Authorization") token: String,
         @Path("id") id: String,
         ):Response<WorkerResponse>

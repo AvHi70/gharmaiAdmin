@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gharmaiadmin.R
-import com.example.gharmaiadmin.adapter.UserAdapter
 import com.example.gharmaiadmin.adapter.WorkerAdapter
 import com.example.gharmaiadmin.entity.WorkerEntity
-import com.example.gharmaiadmin.repository.UserRepository
 import com.example.gharmaiadmin.repository.WorkerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -60,7 +58,6 @@ class worker_section : Fragment() {
                             workerList!!.add(item)
                         }
                         withContext(Dispatchers.Main){
-                            Toast.makeText(context, "Hello Worker", Toast.LENGTH_SHORT).show()
                             val workerAdapter = context?.let { WorkerAdapter(it, workerLists) }
                             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             recyclerView.adapter = workerAdapter

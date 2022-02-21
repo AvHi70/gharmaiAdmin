@@ -8,9 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gharmaiadmin.InsideUI.Electrician
+import com.example.gharmaiadmin.InsideUI.SalonForMan
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.UI.ShowServiceActivity
 import com.example.gharmaiadmin.UI.addService
 import com.example.gharmaiadmin.adapter.ServiceAdapter
 import com.example.gharmaiadmin.adapter.UserAdapter
@@ -27,68 +31,37 @@ import kotlinx.coroutines.withContext
 class sevices_adding : Fragment() {
 
 
-    private lateinit var addService: Button
-    private lateinit var recyclerView: RecyclerView
-
-    companion object{
-        var serviceList: ArrayList<ServiceEntity> = ArrayList<ServiceEntity>()
-//        var serviceList: MutableList<ServiceEntity>? = ArrayList()
-    }
-
+    private lateinit var serviceAdd: Button
+    private lateinit var salonWomenFrag: CardView
+    private lateinit var electrician: CardView
+    private lateinit var menTherapy: CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_sevices_adding, container, false)
+        val view = inflater.inflate(R.layout.all_service_admin, container, false)
 
-        addService = view.findViewById(R.id.btnaddService)
-        recyclerView = view.findViewById(R.id.serviceRecyclerView)
+        serviceAdd = view.findViewById(R.id.buttonAddService)
+        salonWomenFrag = view.findViewById(R.id.salonWomen)
+        electrician = view.findViewById(R.id.electricians)
+        menTherapy = view.findViewById(R.id.menTherapy1212)
 
-        addService.setOnClickListener {
-            startActivity(Intent(this@sevices_adding.context, addService::class.java))
-
+        serviceAdd.setOnClickListener {
+            startActivity(Intent(context, addService::class.java))
+        }
+        salonWomenFrag.setOnClickListener {
+            startActivity(Intent(context, ShowServiceActivity::class.java))
+        }
+        electrician.setOnClickListener {
+            startActivity(Intent(activity, Electrician::class.java))
+        }
+        menTherapy.setOnClickListener {
+            startActivity(Intent(context, SalonForMan::class.java))
         }
 
-//        val serviceAdapter = context?.let { ServiceAdapter(it, serviceList) }
-//        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//        recyclerView.adapter = serviceAdapter
-
-        serviceView()
         return view
-    }
-
-    private fun serviceView() {
-        serviceList = ArrayList()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-
-                val serviceRepository = ServiceRepository()
-                val serviceResponse = serviceRepository.getAllServiceAPI()
-
-                if(serviceResponse.success== true){
-                    val serviceLists = serviceResponse.data
-                    println(serviceLists)
-                    if (serviceLists != null) {
-                        serviceLists.forEach { item ->
-                            serviceList.add(item)
-                        }
-                        withContext(Dispatchers.Main){
-                            val serviceAdapter = context?.let { ServiceAdapter(it, serviceLists) }
-                            recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                            recyclerView.adapter = serviceAdapter
-                        }
-                    }
-                }
-
-            }catch (ex: Exception){
-                withContext(Dispatchers.Main){
-                    Toast.makeText(context, ex.toString(), Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 }
 

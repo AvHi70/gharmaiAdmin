@@ -6,6 +6,8 @@ import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.ServiceEntity
 import com.example.gharmaiadmin.response.DeleteResponse
 import com.example.gharmaiadmin.response.ServiceResponse
+import com.example.gharmaiadmin.response.UserResponse
+import okhttp3.MultipartBody
 
 class ServiceRepository: ApiRequest() {
 
@@ -28,6 +30,11 @@ class ServiceRepository: ApiRequest() {
     suspend fun deleteService(id: String): DeleteResponse {
         return apiRequest {
             serviceAPI.deleteService(ServiceBuilder.token!!,id)
+        }
+    }
+    suspend fun updateimage(id:String,body: MultipartBody.Part): ServiceResponse {
+        return apiRequest {
+            serviceAPI.updateimage(ServiceBuilder.token!!, id, body)
         }
     }
 }

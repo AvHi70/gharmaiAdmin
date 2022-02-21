@@ -9,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gharmaiadmin.Fragments.sevices_adding
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.ServiceEntity
 import com.example.gharmaiadmin.repository.ServiceRepository
 import kotlinx.coroutines.CoroutineScope
@@ -44,10 +46,15 @@ class ServiceAdapter(
 
         val services = serviceList[position]
         var serviceID = services._id
+        var serviceCategory = services.serviceCategory
         println(services)
         holder.serviceName.text = services.serviceName
         holder.serviceDetail.text = services.serviceDetails
         holder.servicePrice.text = services.servicePrice
+
+//        Glide.with(context)
+//            .load(ServiceBuilder.BASE_URL + services.serviceImage)
+//            .into(holder.serviceImage)
 
         holder.btnServiceDelete.setOnClickListener {
             val builder = android.app.AlertDialog.Builder(context)

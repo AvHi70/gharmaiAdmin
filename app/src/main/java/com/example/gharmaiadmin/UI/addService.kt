@@ -9,16 +9,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.ServiceEntity
 import com.example.gharmaiadmin.repository.ServiceRepository
+import com.example.gharmaiadmin.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -65,7 +72,6 @@ class addService : AppCompatActivity() {
                 }
             }
 
-
         if (!CheckRuntimePermission()) {
             Askpermission()
         }
@@ -102,12 +108,15 @@ class addService : AppCompatActivity() {
                         withContext(Dispatchers.Main){
                             Toast.makeText(this@addService, "Service added", Toast.LENGTH_SHORT).show()
                         }
-//                        startActivity(Intent(this@UserRegister, LoginActivity::class.java))
+                        if (imageUrl != "") {
+                            Log.d("imagetag", imageUrl)
+                            UpdateImage(ServiceBuilder.userId.toString())
+                        }
                     }
                 }catch (ex:Exception){
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(this@addService, ex.toString(), Toast.LENGTH_SHORT).show()
-                    }
+//                    withContext(Dispatchers.Main){
+//                        Toast.makeText(this@addService, ex.toString(), Toast.LENGTH_SHORT).show()
+//                    }
                 }
             }
         }
@@ -248,5 +257,49 @@ class addService : AppCompatActivity() {
             e.printStackTrace()
             file
         }
+    }
+    private fun UpdateImage(userId: String) {
+
+        val file = File(imageUrl)
+        Log.d("phoarwto", file.toString())
+        val mimeType = getMimeType(file)
+        Log.d("fill1", mimeType.toString())
+        val reqFile = RequestBody.create(MediaType.parse(mimeType), file)
+        val body = MultipartBody.Part.createFormData("file", file.name, reqFile)
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val userrepo = ServiceRepository()
+                Log.d("Userrerpo", userId.toString())
+
+                val response = userrepo.updateimage(userId, body)
+                if (response.success == true) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@addService,
+                            "Update successful",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+//                    Toast.makeText(
+//                        this@addService,
+//                        ex.localizedMessage,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+                }
+            }
+        }
+    }
+    fun getMimeType(file: File): String? {
+        var type: String? = null
+        val extension = MimeTypeMap.getFileExtensionFromUrl(file.path)
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+        }
+        return type
     }
 }

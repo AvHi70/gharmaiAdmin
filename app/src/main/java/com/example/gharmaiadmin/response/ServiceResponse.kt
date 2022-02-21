@@ -7,5 +7,6 @@ data class ServiceResponse(
     val token: String? =null,
     val data: MutableList<ServiceEntity>? = null,
     val userId: String? = null,
+    val serviceCategory: String? = null,
 ) {
 }

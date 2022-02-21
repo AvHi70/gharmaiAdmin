@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.WorkerEntity
 import com.example.gharmaiadmin.repository.UserRepository
 import com.example.gharmaiadmin.repository.WorkerRepository
@@ -50,6 +52,10 @@ class WorkerAdapter(
         holder.workerAddress.text = worker.workerAddress
         holder.workerContact.text = worker.workerContactNo
         holder.workerGender.text = worker.workerGender
+
+//        Glide.with(context)
+//            .load(ServiceBuilder.BASE_URL + worker.workerProfile_pic)
+//            .into(holder.workerPicture)
 
         holder.deleteButton.setOnClickListener {
             val builder = android.app.AlertDialog.Builder(context)

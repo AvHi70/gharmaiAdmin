@@ -52,10 +52,9 @@ class user_section : Fragment() {
                     val userLists = userResponse.data
 
                     if (userLists != null) {
-                        userLists.forEach { item -> userLists.add(item)
+                        userLists.forEach { item -> userList!!.add(item)
                         }
                         withContext(Dispatchers.Main){
-                            Toast.makeText(context, "hello users", Toast.LENGTH_SHORT).show()
                             val userAdapter = context?.let { UserAdapter(it, userLists) }
                             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             recyclerView.adapter = userAdapter
@@ -72,6 +71,4 @@ class user_section : Fragment() {
             }
         }
     }
-
-
 }

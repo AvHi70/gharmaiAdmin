@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gharmaiadmin.R
+import com.example.gharmaiadmin.api.ServiceBuilder
 import com.example.gharmaiadmin.entity.UserEntity
 import com.example.gharmaiadmin.repository.ServiceRepository
 import com.example.gharmaiadmin.repository.UserRepository
@@ -50,6 +52,10 @@ class UserAdapter(
         holder.userAddress.text = users.addressUser
         holder.userContact.text = users.phoneUser
         holder.userGender.text = users.genderUser
+
+        Glide.with(context)
+            .load(ServiceBuilder.BASE_URL + users.profile_picUser)
+            .into(holder.userPicture)
 
         holder.deleteButton.setOnClickListener {
             val builder = android.app.AlertDialog.Builder(context)

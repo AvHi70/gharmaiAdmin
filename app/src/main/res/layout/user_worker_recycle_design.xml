@@ -20,7 +20,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="58dp"
-        android:background="@drawable/noimage" />
+        android:background="@drawable/worker" />
 
     <TextView
         android:id="@+id/profileName"

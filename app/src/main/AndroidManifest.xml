@@ -23,29 +23,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GharmaiAdmin"
-        android:usesCleartextTraffic="true"
-       >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".InsideUI.SalonForMan"
+            android:exported="false" />
+        <activity
+            android:name=".UI.ShowServiceActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.addService"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".UI.admin_login"
-            android:exported="true">
+            android:exported="true" />
 
-        </activity>
+<!--        <activity-->
+<!--            android:name=".InsideUI.SalonForMan"-->
+<!--            android:exported="true" />-->
+        <activity
+            android:name=".InsideUI.Electrician"
+            android:exported="true" />
+
+
         <activity
             android:name=".UI.admin_register"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".UI.adminDashboard"
-            android:exported="true">
-
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".UI.adminSplash"
             android:exported="true">
